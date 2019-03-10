@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跑马灯</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="动起来" @click = 'move'>
+    <input type="button" value="停止" @click = 'stop'>
+
+    <h3>{{ msg }}</h3>
+
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '艾欧尼亚，昂扬不灭~~~',
+            intervalId: null
+        },
+        methods: {
+            move() {
+                if (this.intervalId != null) return
+               /*在这里面this的指向会出问题，使用var _this = this 来解决
+               var _this = this
+                setInterval(function(){
+                    var start = _this.msg.substring(0,1)
+
+                    var end = _this.msg.substring(1)
+
+                    _this.msg = end + start
+                },300)*/
+                //推荐：ES6中箭头函数，解决了this指向问题
+                this.intervalId = setInterval(() => {
+                    var start = this.msg.substring(0,1)
+
+                    var end = this.msg.substring(1)
+
+                    this.msg = end + start
+                },300)
+            },
+            stop() { //停止定时器
+                clearInterval(this.intervalId)
+                //重新设置intervalId
+                this.intervalId = null;
+            }
+        }
+    })
+</script>
+</body>
+</html>
