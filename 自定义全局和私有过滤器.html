@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>{{ msg | msgLayout('你') }}</h3>
+        <h3>{{ msg | msgFormat('I') }}</h3>
+    </div>
+    <script>
+
+        Vue.filter('msgFormat',function (msg,arg) {
+            return msg.replace(/我/g,arg)
+        })
+         var vm = new Vue({
+               el: '#app',
+               data: {
+                   msg: '我浪费了最好的年华，我丢掉了那个她，我无数次梦到了那个画面，Hi 你好吗'
+               },
+               methods: {},
+               filters: {
+                    msgLayout: function (msg,arg) {
+                        return msg.replace(/我/g,arg)
+                    }
+                }
+             });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-for = "(item,i) in list1">{{ i }}===={{ item }}</p>
+
+        <!--<p v-for = "item in list1">{{ item }}</p>-->
+        <!--<p v-for = "i in list1">{{ i }}</p>-->
+        <span>===============================================</span>
+        <p v-for = "(user,i) in list2">{{ user.id }}======={{ user.name }}===={{ i }}</p>
+        <p v-for = "user in list2">{{ user.id }}======={{ user.name }}</p>
+        <span>===============================================</span>
+        <p v-for = "(val,key,i) in person">{{ val }}==={{ key }}==={{ i }}</p>
+        <p v-for = "(val,key) in person">{{ val }}==={{ key }}</p>
+        <!-- v-for 迭代数字-->
+        <p v-for = "count in 10">this is {{ count }} times</p>
+
+    </div>
+    <script>
+         var vm = new Vue({
+               el: '#app',
+               data: {
+                   //普通数组
+                   list1: [1,2,3,4,5,6],
+                   //对象数组
+                   list2:[
+                       {id: 1,name: "aaa"},
+                       {id: 2,name: "bbb"},
+                       {id: 3,name: "ccc"}
+                   ],
+                   person: {
+                       id: 1,
+                       name: 'Follish-max',
+                       gender: '男'
+                   }
+               },
+               methods: {}
+             });
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click = 'flag=!flag'>
+
+        <!-- v-if :每次都会重新删除和创建元素    具有较高的切换性能消耗-->
+        <h2 v-if="flag">hello world</h2>
+        <!-- v-show :每次不会重新进行DOM的删除和创建，只是切换DOM元素的 display：none 属性
+        具有较高的初始渲染消耗-->
+        <h2 v-show="flag">hello world</h2>
+    </div>
+    <script>
+         var vm = new Vue({
+               el: '#app',
+               data: {
+                   flag: false
+               },
+               methods: {}
+             });
+    </script>
+</body>
+</html>
