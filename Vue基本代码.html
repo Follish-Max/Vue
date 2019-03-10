@@ -5,16 +5,32 @@
     <title>Vue</title>
     <!--导入Vue的包-->
     <script src="lib/vue-2.4.0.js"></script>
+    <style>
+        [v-cloak] {
+            /*有的时候v-cloak添加之后，能有部分变量会出现闪烁问题，那是因为v-cloak
+            的display属性被优先级别高的样式覆盖所导致，处理方案：！important */
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <p>{{ msg }}</p>
+        <!--使用v-cloak能够解决 插值表达式闪烁 的问题-->
+        <p v-cloak>==={{ msg }}===</p>
+        <!--默认 v-text不会出现闪烁问题，但是v-text会覆盖元素中原有的内容-->
+        <p v-text = 'msg'>======</p>
+        <!--v-html将文本内容以html格式渲染-->
+        <p v-html = 'msg'>====</p>
+
     </div>
     <script>
+
+        //引入包之后，浏览器的内存中，就多了一个Vue的构造函数
+        //new出来的这个vm对象，就是我们MVVM中的VM调度者
         var vm = new Vue({
-            el: '#app',
+            el: '#app',     //vm这个实例就是要控制的页面上的哪个部分
             data: {
-                msg: '欢迎学习Vue'
+                msg: "<h1>欢迎学习Vue</h1>"
             }
         })
     </script>
