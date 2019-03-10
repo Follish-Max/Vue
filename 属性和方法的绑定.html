@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <!--v-bind：是Vue中，提供绑定属性的指令，缩写为  ：要绑定的属性-->
+        <!--v-on: 是Vue中，事件绑定机制，缩写为  @要绑定的事件-->
+        <input type="button" value = "按钮" :title = "mytitle" @click="show">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                mytitle: '这是自定义的title'
+            },
+            methods: {
+                show(){
+                    alert('hello')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
