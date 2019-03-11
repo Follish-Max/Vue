@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+    <style>
+        li {
+            border: 1px dashed #999;
+            margin: 5px;
+            line-height: 35px;
+            padding-left: 5px;
+            font-size: 12px;
+            width: 100%;
+        }
+
+        li:hover {
+            background-color: hotpink;
+            transition: all 0.8s ease;
+        }
+        .my-enter,
+        .my-leave-to {
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .my-enter-active,
+        .my-leave-active {
+            transition: all 0.8s ease;
+        }
+        /* 这里的 .v-move 和 .v-leave-active 配合使用，能够实现列表后续
+         的元素，渐渐地漂上来的效果*/
+        .my-move{
+            transition: all 0.8s ease;
+        }
+        .my-leave-active{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <label>
+            Id:
+            <input type="text" v-model="id">
+        </label>
+        <label>
+            Name:
+            <input type="text" v-model="name">
+        </label>
+
+        <input type="button" value="添加" @click = "add">
+
+        <!-- appear 实现页面刚展示出来时hi后的入场效果，
+            tag属性，指定transition-group渲染为指定的元素，默认为span标签
+            -->
+        <transition-group appear tag="ul" name="my">
+            <li v-for="(item,i) in list" :key="item.id" @click = 'del(i)'>
+                {{item.id}}-----{{ item.name }}
+            </li>
+        </transition-group>
+    </div>
+
+    <script>
+         var vm = new Vue({
+               el: '#app',
+               data: {
+                   id: '',
+                   name: '',
+                   list: [
+                       { id: 1, name: '赵高' },
+                       { id: 2, name: '秦桧' },
+                       { id: 3, name: '严嵩' },
+                       { id: 4, name: '魏忠贤' }
+                   ]
+               },
+               methods: {
+                   add() {
+                       this.list.push({id :this.id,name: this.name}),
+                       this.id = this.name = ''
+                   },
+                   del(i) {
+                       //splice不会改变原数组，返回的是操作后的数组
+                       this.list.splice(i,1)
+                   }
+               }
+             });
+    </script>
+</body>
+</html>
