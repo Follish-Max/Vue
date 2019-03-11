@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+    <link rel="stylesheet" href="lib/animate.css">
+</head>
+<body>
+<div id="app">
+    <input type="button" value="toggle" @click = 'flag = !flag'>
+
+    <transition
+            enter-active-class = 'animated bounceIn'
+            leave-active-class = 'animated bounceOut'
+            :duration="{ enter:200,leave:600 }">
+        <h3 v-if="flag">hello world</h3>
+    </transition>
+
+
+    <!--<transition-->
+    <!--enter-active-class = 'bounceIn'-->
+    <!--leave-active-class = 'bounceOut'-->
+    <!--:duration="{ enter:200,leave:600 }">-->
+        <!--<h3 v-if="flag" class="animated">hello world</h3>-->
+    <!--</transition>-->
+    <script>
+         var vm = new Vue({
+               el: '#app',
+               data: {
+                   flag: false
+               },
+               methods: {}
+             });
+    </script>
+</div>
+</body>
+</html>
